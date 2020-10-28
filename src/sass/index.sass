@@ -14,9 +14,13 @@ main
                     margin-right: 1rem
                 #title
                     font-size: 1.5rem
-                    font-weight: normal
                 #author, #publisher, #pubdate, #isbn, #ndc
                     font-size: 1.2rem
+                #pubdate
+                    &::before
+                        content: '('
+                    &::after
+                        content: ')'
 
             #content
                 border: 4px solid #000000
