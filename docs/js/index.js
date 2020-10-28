@@ -47,13 +47,18 @@ console.log(params)
 
 if (params.id) {
     fetch(`https://private.calil.jp/bib/gk-2002000-3xj40/${params.id}.json`).then((r) => r.json()).then((data) => {
-        console.log(data)
         document.title = data.title[0]
         document.getElementById('title').innerHTML = data.title[0]
         document.getElementById('author').innerHTML = data.author[0]
         document.getElementById('publisher').innerHTML = data.publisher[0]
         document.getElementById('pubdate').innerHTML = data.pubdate[0]
         document.getElementById('isbn').innerHTML = data.normalized_isbn
+        const imageUrl = `https://cover.openbd.jp/${data.normalized_isbn}.jpg`
+        const image = new Image()
+        image.onload = () => {
+            document.getElementById('cover').src = imageUrl
+        }
+        image.src = imageUrl
     })
 }
 
