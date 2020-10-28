@@ -6,7 +6,14 @@ function getQueryString() {
     });
     return params;    
 }
-
+function shuffle(array) {
+    for (let i = array.length - 1; i >= 0; i--) {
+      let rand = Math.floor(Math.random() * (i + 1));
+      // 配列の数値を入れ替える
+      [array[i], array[rand]] = [array[rand], array[i]]
+    }
+    return array;
+}
 const render = () => {
     const icons = document.getElementById('icons')
     if (icons) icons.innerHTML = '';
@@ -20,11 +27,17 @@ const render = () => {
         }
         count += 1
     })
-    ndcs.map((ndc) => {
+    shuffle(ndcs).slice(0, 10).map((ndc) => {
         const img = document.createElement('img')
         img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
-        img.width = 50
+        img.width = 70
         document.getElementById('icons').append(img)
+    })
+    shuffle(ndcs).slice(0, 10).map((ndc) => {
+        const img = document.createElement('img')
+        img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
+        img.width = 70
+        document.getElementById('icons2').append(img)
     })
     Array.prototype.slice.call(document.querySelectorAll('img')).map((img) => {
         setInterval(() => {
