@@ -14,19 +14,18 @@ html(lang="ja")
       // "padding-**mm" is optional: you can set 10, 15, 20 or 25
       section.sheet.padding-10mm
         // Write HTML just like a web page
+        #icons
         article
-          #icons
-        article
-          img#cover
-          h1#title
-          #author
-          #publisher
-          #pubdate
-          #isbn
-          #ndc
-        article
+          div
+            img#cover
+            div
+              h1#title
+              #author
+              span#publisher
+              span#pubdate
+              #isbn
+              #ndc
           #content
           img.character
-        article
-          #icons2
+        #icons2
     script(src="./js/index.js")
