@@ -1,4 +1,11 @@
-console.log('Hello LooselyTemplate!')
+function getQueryString() {
+    var params = {}
+    location.search.substr(1).split('&').map(function(param) {
+        var pairs = param.split('=');
+        params[pairs[0]] = decodeURIComponent(pairs[1]);
+    });
+    return params;    
+}
 
 const render = () => {
     const icons = document.getElementById('icons')
@@ -33,6 +40,19 @@ const render = () => {
             }
         }, 800)
     })    
+}
+
+const params = getQueryString()
+console.log(params)
+
+if (params.id) {
+    fetch(`https://private.calil.jp/bib/gk-2002000-3xj40/${params.id}.json`).then((r) => r.json()).then((data) => {
+        console.log(data)
+        document.getElementById('title').innerHTML = data.title[0]
+        document.getElementById('author').innerHTML = data.author[0]
+        document.getElementById('publisher').innerHTML = data.publisher[0]
+        document.getElementById('pubdate').innerHTML = data.pubdate[0]
+    })
 }
 
 
