@@ -17,7 +17,7 @@ module.exports = {
         "port": 3001
     },
     "files": [
-        "./build/**/*"
+        "./docs/**/*"
     ],
     "watchEvents": [
         "change"
@@ -28,7 +28,7 @@ module.exports = {
     "watchOptions": {
         "ignoreInitial": true
     },
-    "server": './build/',
+    "server": './docs/',
     "proxy": false,
     "port": 3000,
     "middleware": false,

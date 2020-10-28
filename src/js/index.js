@@ -52,6 +52,7 @@ if (params.id) {
         document.getElementById('author').innerHTML = data.author[0]
         document.getElementById('publisher').innerHTML = data.publisher[0]
         document.getElementById('pubdate').innerHTML = data.pubdate[0]
+        document.getElementById('isbn').innerHTML = data.normalized_isbn
     })
 }
 
