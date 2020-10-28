@@ -10,24 +10,30 @@
   </head>
   <!-- Set also "landscape" if you need-->
   <body class="A4">
-    <!-- Each sheet element should have the class "sheet"-->
-    <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25-->
-    <section class="sheet padding-10mm">
-      <!-- Write HTML just like a web page-->
-      <article>
-        <div id="icons"></div>
-      </article>
-      <article><img id="cover">
-        <h1 id="title"></h1>
-        <div id="author"></div>
-        <div id="publisher"></div>
-        <div id="pubdate"></div>
-        <div id="isbn"></div>
-      </article>
-      <article>
-        <div id="icons2"></div>
-      </article>
-    </section>
+    <main>
+      <!-- Each sheet element should have the class "sheet"-->
+      <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25-->
+      <section class="sheet padding-10mm">
+        <!-- Write HTML just like a web page-->
+        <article>
+          <div id="icons"></div>
+        </article>
+        <article><img id="cover">
+          <h1 id="title"></h1>
+          <div id="author"></div>
+          <div id="publisher"></div>
+          <div id="pubdate"></div>
+          <div id="isbn"></div>
+          <div id="ndc"></div>
+        </article>
+        <article>
+          <div id="content"></div><img class="character">
+        </article>
+        <article>
+          <div id="icons2"></div>
+        </article>
+      </section>
+    </main>
     <script src="./js/index.js"></script>
   </body>
 </html>

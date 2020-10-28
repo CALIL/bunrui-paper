@@ -9,19 +9,24 @@ html(lang="ja")
     link(rel="stylesheet", href="./index.css")
   // Set also "landscape" if you need
   body.A4
-    // Each sheet element should have the class "sheet"
-    // "padding-**mm" is optional: you can set 10, 15, 20 or 25
-    section.sheet.padding-10mm
-      // Write HTML just like a web page
-      article
-        #icons
-      article
-        img#cover
-        h1#title
-        #author
-        #publisher
-        #pubdate
-        #isbn
-      article
-        #icons2
+    main
+      // Each sheet element should have the class "sheet"
+      // "padding-**mm" is optional: you can set 10, 15, 20 or 25
+      section.sheet.padding-10mm
+        // Write HTML just like a web page
+        article
+          #icons
+        article
+          img#cover
+          h1#title
+          #author
+          #publisher
+          #pubdate
+          #isbn
+          #ndc
+        article
+          #content
+          img.character
+        article
+          #icons2
     script(src="./js/index.js")

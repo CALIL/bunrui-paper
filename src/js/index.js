@@ -66,7 +66,10 @@ if (params.id) {
         document.getElementById('publisher').innerHTML = data.publisher[0]
         document.getElementById('pubdate').innerHTML = data.pubdate[0]
         document.getElementById('isbn').innerHTML = data.normalized_isbn
+        document.getElementById('ndc').innerHTML = data.class[data.class.length - 1]
         document.getElementById('cover').src = `https://asia-northeast1-libmuteki2.cloudfunctions.net/openbd_cover_with_google_books?isbn=` + data.normalized_isbn
+        const ndcId = data.class[data.class.length - 1].slice(0, 2) + '0'
+        document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + ndcId + '_1.svg'
     })
 }
 
