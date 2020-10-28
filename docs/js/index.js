@@ -48,6 +48,7 @@ console.log(params)
 if (params.id) {
     fetch(`https://private.calil.jp/bib/gk-2002000-3xj40/${params.id}.json`).then((r) => r.json()).then((data) => {
         console.log(data)
+        document.title = data.title[0]
         document.getElementById('title').innerHTML = data.title[0]
         document.getElementById('author').innerHTML = data.author[0]
         document.getElementById('publisher').innerHTML = data.publisher[0]
