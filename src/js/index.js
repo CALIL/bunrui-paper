@@ -53,12 +53,7 @@ if (params.id) {
         document.getElementById('publisher').innerHTML = data.publisher[0]
         document.getElementById('pubdate').innerHTML = data.pubdate[0]
         document.getElementById('isbn').innerHTML = data.normalized_isbn
-        const imageUrl = `https://cover.openbd.jp/${data.normalized_isbn}.jpg`
-        const image = new Image()
-        image.onload = () => {
-            document.getElementById('cover').src = imageUrl
-        }
-        image.src = imageUrl
+        document.getElementById('cover').src = `https://asia-northeast1-libmuteki2.cloudfunctions.net/openbd_cover_with_google_books?isbn=` + data.normalized_isbn
     })
 }
 
