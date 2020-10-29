@@ -67,6 +67,7 @@ if (params.id && params.region) {
     fetch(`https://negima-bib-l3cmcn337q-an.a.run.app/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
         document.title = data.title[0]
         document.getElementById('title').innerHTML = data.title[0]
+        document.getElementById('volume').innerHTML = data.volume[0]
         document.getElementById('author').innerHTML = data.author[0]
         document.getElementById('publisher').innerHTML = data.publisher[0]
         document.getElementById('pubdate').innerHTML = data.pubdate[0]
