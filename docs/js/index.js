@@ -31,13 +31,8 @@ const render = () => {
         const img = document.createElement('img')
         img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
         img.width = 71
+        img.alt = ndc
         document.getElementById('icons').append(img)
-    })
-    shuffle(ndcs).slice(0, 10).map((ndc) => {
-        const img = document.createElement('img')
-        img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
-        img.width = 71
-        document.getElementById('icons2').append(img)
     })
     Array.prototype.slice.call(document.querySelectorAll('img')).map((img) => {
         setInterval(() => {
@@ -74,7 +69,24 @@ if (params.id && params.region) {
             displayValue: true,
             fontSize: 16
         });
-        document.getElementById('ndc').innerHTML = data.class[data.class.length - 1]
+        const ndc = data.class[data.class.length - 1]
+        document.getElementById('ndc').innerHTML = ndc
+        // ndcのラベルをndc.devのAPIから取得
+        fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/'+ndc).then((r) => r.json()).then((data) => {
+            document.getElementById('ndc').innerHTML = ndc + ' ' + data['label@ja'].split('--')[0]
+        })
+        let ndcs = []
+        let count = 0
+        Array.from({length: 10}).map(() => {
+            ndcs.push(ndc.slice(0,1) + count + '0')
+            count += 1
+        })    
+        shuffle(ndcs).slice(0, 10).map((ndc) => {
+            const img = document.createElement('img')
+            img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
+            img.width = 71
+            document.getElementById('icons2').append(img)
+        })
         document.getElementById('cover').src = `https://asia-northeast1-libmuteki2.cloudfunctions.net/openbd_cover_with_google_books?isbn=` + data.normalized_isbn
         const ndcId = data.class[data.class.length - 1].slice(0, 2) + '0'
         document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + ndcId + '_1.svg'
