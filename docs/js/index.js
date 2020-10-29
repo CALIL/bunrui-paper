@@ -65,6 +65,7 @@ const params = getQueryString()
 if (params.id && params.region) {
     // fetch(`https://private.calil.jp/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
     fetch(`https://negima-bib-l3cmcn337q-an.a.run.app/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
+        document.getElementById('cover').src = `https://asia-northeast1-libmuteki2.cloudfunctions.net/openbd_cover_with_google_books?isbn=` + data.normalized_isbn
         document.title = data.title[0]
         document.getElementById('title').innerHTML = data.title[0]
         document.getElementById('volume').innerHTML = data.volume[0]
@@ -83,27 +84,48 @@ if (params.id && params.region) {
             fontSize: 16,
             flat: true
         });
-        const ndc = data.class[data.class.length - 1]
-        document.getElementById('ndc').innerHTML = ndc
-        // ndcのラベルをndc.devのAPIから取得
-        fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/' + ndc).then((r) => r.json()).then((data) => {
-            document.getElementById('ndc').innerHTML = ndc + ' ' + data['label@ja'].split('--')[0]
-        })
-        let ndcs = []
-        let count = 0
-        Array.from({length: 10}).map(() => {
-            ndcs.push(ndc.slice(0,1) + count + '0')
-            count += 1
-        })
-        shuffle(ndcs).slice(0, 10).map((ndc) => {
-            const img = document.createElement('img')
-            img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
-            img.width = 71
-            document.getElementById('icons2').append(img)
-        })
-        document.getElementById('cover').src = `https://asia-northeast1-libmuteki2.cloudfunctions.net/openbd_cover_with_google_books?isbn=` + data.normalized_isbn
-        const ndcId = data.class[data.class.length - 1].slice(0, 2) + '0'
-        document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + ndcId + '_1.svg'
+        if (data.class.length > 0) {
+            const ndc = data.class[data.class.length - 1]
+            document.getElementById('ndc').innerHTML = ndc
+            // ndcのラベルをndc.devのAPIから取得
+            fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/' + ndc).then((r) => r.json()).then((data) => {
+                document.getElementById('ndc').innerHTML = ndc + ' ' + data['label@ja'].split('--')[0]
+            })
+            let ndcs = []
+            let count = 0
+            Array.from({length: 10}).map(() => {
+                ndcs.push(ndc.slice(0,1) + count + '0')
+                count += 1
+            })
+            shuffle(ndcs).slice(0, 10).map((ndc) => {
+                const img = document.createElement('img')
+                img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
+                img.width = 71
+                document.getElementById('icons2').append(img)
+            })
+            const ndcId = data.class[data.class.length - 1].slice(0, 2) + '0'
+            document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + ndcId + '_1.svg'
+        } else {
+            let count = 0
+            const ndcs = []
+            Array.from({length: 100}).map(() => {
+                if (String(count).length === 1) {
+                    ndcs.push('0' + count + '0')
+                } else {
+                    ndcs.push(count + '0')
+                }
+                count += 1
+            })                    
+            document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + shuffle(ndcs)[0] + '_1.svg'
+            shuffle(ndcs).slice(0, 10).map((ndc) => {
+                const img = document.createElement('img')
+                img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
+                img.width = 71
+                img.alt = ndc
+                img.title = ndc
+                document.getElementById('icons2').append(img)
+            })        
+        }
     })
 }
 
