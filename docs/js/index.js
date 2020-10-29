@@ -90,6 +90,8 @@ if (params.id && params.region) {
             document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + ndcId + '_1.svg'
             const ndc = data.class[data.class.length - 1]
             document.getElementById('ndc').innerHTML = ndc
+            // ndcかどうか判定
+            if (!ndc.match(/^\d{3}/)) return noNDC()
             // ndcのラベルをndc.devのAPIから取得
             fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/' + ndc).then((r) => r.json()).then((data) => {
                 const temp = data['label@ja'] !== '' ? data['label@ja'] : data['prefLabel@ja']
@@ -97,8 +99,6 @@ if (params.id && params.region) {
                 document.getElementById('ndc').innerHTML = label
                 document.querySelector('.character').alt = label
                 document.querySelector('.character').title = label
-            }).catch(() => {
-                noNDC()
             })
             let ndcs = []
             let count = 0
