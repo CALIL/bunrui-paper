@@ -110,6 +110,8 @@ if (params.id && params.region) {
                 const img = document.createElement('img')
                 img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
                 img.width = 71
+                img.alt = ndc
+                img.title = ndc
                 document.getElementById('icons2').append(img)
             })
         } else {
