@@ -85,6 +85,8 @@ if (params.id && params.region) {
             flat: true
         });
         if (data.class.length > 0) {
+            const ndcId = data.class[data.class.length - 1].slice(0, 2) + '0'
+            document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + ndcId + '_1.svg'
             const ndc = data.class[data.class.length - 1]
             document.getElementById('ndc').innerHTML = ndc
             // ndcのラベルをndc.devのAPIから取得
@@ -106,8 +108,6 @@ if (params.id && params.region) {
                 img.width = 71
                 document.getElementById('icons2').append(img)
             })
-            const ndcId = data.class[data.class.length - 1].slice(0, 2) + '0'
-            document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + ndcId + '_1.svg'
         } else {
             let count = 0
             const ndcs = []
