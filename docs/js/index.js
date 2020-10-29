@@ -30,13 +30,13 @@ const render = () => {
     shuffle(ndcs).slice(0, 10).map((ndc) => {
         const img = document.createElement('img')
         img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
-        img.width = 70
+        img.width = 71
         document.getElementById('icons').append(img)
     })
     shuffle(ndcs).slice(0, 10).map((ndc) => {
         const img = document.createElement('img')
         img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
-        img.width = 70
+        img.width = 71
         document.getElementById('icons2').append(img)
     })
     Array.prototype.slice.call(document.querySelectorAll('img')).map((img) => {
