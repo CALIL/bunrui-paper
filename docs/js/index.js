@@ -56,16 +56,24 @@ const render = () => {
 }
 
 const params = getQueryString()
-console.log(params)
-
-if (params.id) {
-    fetch(`https://private.calil.jp/bib/gk-2002000-3xj40/${params.id}.json`).then((r) => r.json()).then((data) => {
+if (params.id && params.region) {
+    fetch(`https://private.calil.jp/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
         document.title = data.title[0]
         document.getElementById('title').innerHTML = data.title[0]
         document.getElementById('author').innerHTML = data.author[0]
         document.getElementById('publisher').innerHTML = data.publisher[0]
         document.getElementById('pubdate').innerHTML = data.pubdate[0]
-        document.getElementById('isbn').innerHTML = data.normalized_isbn
+        // document.getElementById('isbn').innerHTML = data.normalized_isbn
+        // JsBarcode('#isbn', data.normalized_isbn);
+        JsBarcode('#isbn', data.normalized_isbn, {
+            // format: "pharmacode",
+            lineColor: "#000000",
+            background: 'transparent',
+            width: 1.5,
+            height: 40,
+            displayValue: true,
+            fontSize: 16
+        });
         document.getElementById('ndc').innerHTML = data.class[data.class.length - 1]
         document.getElementById('cover').src = `https://asia-northeast1-libmuteki2.cloudfunctions.net/openbd_cover_with_google_books?isbn=` + data.normalized_isbn
         const ndcId = data.class[data.class.length - 1].slice(0, 2) + '0'
