@@ -63,8 +63,8 @@ const toISBN13 = (isbn10) => {
 
 const params = getQueryString()
 if (params.id && params.region) {
-    // fetch(`https://private.calil.jp/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
-    fetch(`https://negima-bib-l3cmcn337q-an.a.run.app/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
+    fetch(`https://private.calil.jp/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
+    // fetch(`https://negima-bib-l3cmcn337q-an.a.run.app/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
         document.getElementById('cover').src = `https://asia-northeast1-libmuteki2.cloudfunctions.net/openbd_cover_with_google_books?isbn=` + data.normalized_isbn
         document.title = data.title[0]
         document.getElementById('title').innerHTML = data.title[0]
