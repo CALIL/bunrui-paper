@@ -93,3 +93,34 @@ main
             img
                 width: 100px
                 margin-left: 0.5rem
+        .binder
+            position: absolute
+            top: 0
+            left: 0
+            width: 60mm
+            height: 100%
+            &::before
+                content: ''
+                width: 6mm
+                height: 6mm
+                background-color: #ffffff
+                border: 2px solid #cccccc
+                border-radius: 50px
+                position: absolute
+                top: calc(50% - 40mm + 5mm)
+                left: calc(12mm - 5mm)
+            &::after
+                content: ''
+                width: 6mm
+                height: 6mm
+                background-color: #ffffff
+                border: 2px solid #cccccc
+                border-radius: 50px
+                position: absolute
+                top: calc(50% + 40mm - 5mm)
+                left: calc(12mm - 5mm)
+
+
+@media print
+    .binder
+        display: none
