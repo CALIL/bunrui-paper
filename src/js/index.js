@@ -50,6 +50,16 @@ const render = () => {
     })    
 }
 
+
+const toISBN13 = (isbn10) => {
+    const src = `978${isbn10.slice(0, 9)}`;
+    const sum = src.split('').map(s => parseInt(s))
+        .reduce((p, c, i) => p + ((i % 2 === 0) ? c : c * 3));
+     const rem = 10 - sum % 10;
+    const checkdigit = rem === 10 ? 0 : rem;
+    return `${src}${checkdigit}`;
+};
+
 const params = getQueryString()
 if (params.id && params.region) {
     fetch(`https://private.calil.jp/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
@@ -60,7 +70,7 @@ if (params.id && params.region) {
         document.getElementById('pubdate').innerHTML = data.pubdate[0]
         // document.getElementById('isbn').innerHTML = data.normalized_isbn
         // JsBarcode('#isbn', data.normalized_isbn);
-        JsBarcode('#isbn', data.normalized_isbn, {
+        JsBarcode('#isbn', toISBN13(data.normalized_isbn), {
             format: 'EAN13',
             lineColor: "#000000",
             background: 'transparent',
