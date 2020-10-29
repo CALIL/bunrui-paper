@@ -48,10 +48,24 @@ main
                 bottom: -50px
                 left: 250px
                 transform: rotate(7deg)
-            #isbn
+            .isbn
                 position: absolute
-                bottom: -30px
+                bottom: -45px
                 left: 70%
+                width: 155px
+                overflow: hidden
+                &::before
+                    content: ''
+                    width: 400px
+                    height: 10px
+                    background-color: #ffffff
+                    position: absolute
+                    top: -9px
+                    left: -10px
+                    transform: rotate(-5deg)
+                    z-index: 10000
+                #isbn
+                    border-top-left-radius: 250% 100%
         #icons2
             position: absolute
             bottom: 15mm
