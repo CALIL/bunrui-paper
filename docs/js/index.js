@@ -32,6 +32,7 @@ const render = () => {
         img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
         img.width = 71
         img.alt = ndc
+        img.title = ndc
         document.getElementById('icons').append(img)
     })
     Array.prototype.slice.call(document.querySelectorAll('img')).map((img) => {
@@ -83,7 +84,7 @@ if (params.id && params.region) {
         const ndc = data.class[data.class.length - 1]
         document.getElementById('ndc').innerHTML = ndc
         // ndcのラベルをndc.devのAPIから取得
-        fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/'+ndc).then((r) => r.json()).then((data) => {
+        fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/' + ndc).then((r) => r.json()).then((data) => {
             document.getElementById('ndc').innerHTML = ndc + ' ' + data['label@ja'].split('--')[0]
         })
         let ndcs = []
@@ -91,7 +92,7 @@ if (params.id && params.region) {
         Array.from({length: 10}).map(() => {
             ndcs.push(ndc.slice(0,1) + count + '0')
             count += 1
-        })    
+        })
         shuffle(ndcs).slice(0, 10).map((ndc) => {
             const img = document.createElement('img')
             img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
