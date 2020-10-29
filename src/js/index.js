@@ -97,6 +97,8 @@ if (params.id && params.region) {
                 document.getElementById('ndc').innerHTML = label
                 document.querySelector('.character').alt = label
                 document.querySelector('.character').title = label
+            }).catch(() => {
+                noNDC()
             })
             let ndcs = []
             let count = 0
@@ -111,28 +113,32 @@ if (params.id && params.region) {
                 document.getElementById('icons2').append(img)
             })
         } else {
-            let count = 0
-            const ndcs = []
-            Array.from({length: 100}).map(() => {
-                if (String(count).length === 1) {
-                    ndcs.push('0' + count + '0')
-                } else {
-                    ndcs.push(count + '0')
-                }
-                count += 1
-            })                    
-            document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + shuffle(ndcs)[0] + '_1.svg'
-            shuffle(ndcs).slice(0, 10).map((ndc) => {
-                const img = document.createElement('img')
-                img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
-                img.width = 71
-                img.alt = ndc
-                img.title = ndc
-                document.getElementById('icons2').append(img)
-            })        
+            noNDC()
         }
     })
 }
 
+const noNDC = () => {
+    let count = 0
+    const ndcs = []
+    Array.from({length: 100}).map(() => {
+        if (String(count).length === 1) {
+            ndcs.push('0' + count + '0')
+        } else {
+            ndcs.push(count + '0')
+        }
+        count += 1
+    })                    
+    document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + shuffle(ndcs)[0] + '_1.svg'
+    document.getElementById('icons2').innerHTML = ''
+    shuffle(ndcs).slice(0, 10).map((ndc) => {
+        const img = document.createElement('img')
+        img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
+        img.width = 71
+        img.alt = ndc
+        img.title = ndc
+        document.getElementById('icons2').append(img)
+    })        
+}
 
 render()
