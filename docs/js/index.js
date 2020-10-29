@@ -89,7 +89,10 @@ if (params.id && params.region) {
             document.getElementById('ndc').innerHTML = ndc
             // ndcのラベルをndc.devのAPIから取得
             fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/' + ndc).then((r) => r.json()).then((data) => {
-                document.getElementById('ndc').innerHTML = ndc + ' ' + data['label@ja'].split('--')[0]
+                const label = ndc + ' ' + data['label@ja'].split('--')[0]
+                document.getElementById('ndc').innerHTML = label
+                document.querySelector('.character').alt = label
+                document.querySelector('.character').title = label
             })
             let ndcs = []
             let count = 0
