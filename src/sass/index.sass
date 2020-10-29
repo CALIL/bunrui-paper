@@ -34,13 +34,27 @@ main
                         content: '）'
 
             #content
+                position: relative
                 width: 95%
                 height: 165mm
                 margin: 0 auto
-                background-image: url(./assets/konna.svg), url(./assets/namae.svg), url(./assets/waku.svg)
-                background-repeat: no-repeat, no-repeat, no-repeat
-                background-size: 70mm, 70mm, 100%
-                background-position: 10mm 12mm, 90% 120mm, 0 0
+                // background-image: url(./assets/konna.svg), url(./assets/namae.svg), url(./assets/waku.svg)
+                // background-repeat: no-repeat, no-repeat, no-repeat
+                // background-size: 70mm, 70mm, 100%
+                // background-position: 10mm 12mm, 90% 120mm, 0 0
+                .konna
+                    position: absolute
+                    width: 70mm
+                    left: 10mm
+                    top: 12mm
+                .namae
+                    position: absolute
+                    width: 70mm
+                    left: 55%
+                    top: 120mm
+                .waku
+                    position: absolute
+                    width: 100%
             .character
                 position: absolute
                 bottom: -40px
