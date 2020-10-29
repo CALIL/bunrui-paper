@@ -61,13 +61,14 @@ if (params.id && params.region) {
         // document.getElementById('isbn').innerHTML = data.normalized_isbn
         // JsBarcode('#isbn', data.normalized_isbn);
         JsBarcode('#isbn', data.normalized_isbn, {
-            // format: "pharmacode",
+            format: 'EAN13',
             lineColor: "#000000",
             background: 'transparent',
             width: 1.5,
             height: 40,
             displayValue: true,
-            fontSize: 16
+            fontSize: 16,
+            flat: true
         });
         const ndc = data.class[data.class.length - 1]
         document.getElementById('ndc').innerHTML = ndc
