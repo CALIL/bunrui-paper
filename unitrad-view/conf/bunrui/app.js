@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   if (icons) icons.innerHTML = '';
 
   const params = getQueryString()
-  if (params.ndc) {
+  if (params.free && params.free.match(/^\d{3}$/)) {
     // const shrinkNDC = params.ndc.slice(0, 2) + '0'
     // document.querySelector('.logo').insertAdjacentHTML('beforebegin', '<img alt="' + params.ndc + '" title="' + params.ndc + '" class="ndcCharacter" src="https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg">');
 
