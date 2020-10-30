@@ -109,14 +109,17 @@ if (params.id && params.region) {
             document.getElementById('ndc').innerHTML = ndc
             // ndcかどうか判定
             if (!ndc.match(/^\d{3}/)) return noNDC()
-            const ndcId = data.class[data.class.length - 1].slice(0, 2) + '0'
+
+            // 左下のキャラクターを追加
             const a = document.createElement('a')
-            a.href = 'https://try.calil.jp/bunrui/?ndc=' + ndcId
+            a.href = 'https://try.calil.jp/bunrui/?ndc=' + ndc
             a.target = '_blank'
             const img = document.createElement('img')
-            img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndcId + '_1.svg'
+            const shrinkNDC = data.class[data.class.length - 1].slice(0, 2) + '0'
+            img.src = 'https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg'
             a.appendChild(img)
             document.querySelector('.character').appendChild(a)
+
             // ndcのラベルをndc.devのAPIから取得
             fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/' + ndc).then((r) => r.json()).then((data) => {
                 const temp = data['label@ja'] !== '' ? data['label@ja'] : data['prefLabel@ja']
