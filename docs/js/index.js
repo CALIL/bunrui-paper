@@ -84,7 +84,8 @@ const params = getQueryString()
 if (params.id && params.region) {
     fetch(`https://private.calil.jp/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
     // fetch(`https://negima-bib-l3cmcn337q-an.a.run.app/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
-        document.getElementById('cover').src = `https://asia-northeast1-libmuteki2.cloudfunctions.net/openbd_cover_with_google_books?isbn=` + data.normalized_isbn
+        // document.getElementById('cover').src = `https://asia-northeast1-libmuteki2.cloudfunctions.net/openbd_cover_with_google_books?isbn=` + data.normalized_isbn
+        document.getElementById('cover').src = `https://cover.openbd.jp/${toISBN13(data.normalized_isbn)}.jpg`
         document.title = data.title[0]
         document.getElementById('title').innerHTML = data.title[0]
         document.getElementById('volume').innerHTML = data.volume[0]
@@ -117,8 +118,7 @@ if (params.id && params.region) {
             const img = document.createElement('img')
             const shrinkNDC = data.class[data.class.length - 1].slice(0, 2) + '0'
             img.src = 'https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg'
-            a.appendChild(img)
-            document.querySelector('.character').appendChild(a)
+            document.querySelector('.character').appendChild(img)
 
             // ndcのラベルをndc.devのAPIから取得
             fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/' + ndc).then((r) => r.json()).then((data) => {
@@ -144,8 +144,8 @@ if (params.id && params.region) {
                 img.alt = ndc
                 img.title = ndc
                 img.className = 'ndcCharacter'
-                a.appendChild(img)
-                document.getElementById('icons2').appendChild(a)
+                // a.appendChild(img)
+                document.getElementById('icons2').appendChild(img)
             })
         } else {
             noNDC()
@@ -175,8 +175,8 @@ const noNDC = () => {
         img.alt = ndc
         img.title = ndc
         img.className = 'ndcCharacter'
-        a.appendChild(img)
-        document.getElementById('icons2').appendChild(a)
+        // a.appendChild(img)
+        document.getElementById('icons2').appendChild(img)
     })        
 }
 
