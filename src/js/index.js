@@ -103,6 +103,10 @@ if (params.id && params.region) {
             flat: true
         });
         if (data.class.length > 0) {
+            const ndc = data.class[data.class.length - 1]
+            document.getElementById('ndc').innerHTML = ndc
+            // ndcかどうか判定
+            if (!ndc.match(/^\d{3}/)) return noNDC()
             const ndcId = data.class[data.class.length - 1].slice(0, 2) + '0'
             const a = document.createElement('a')
             a.href = 'https://try.calil.jp/bunrui/?ndc=' + ndcId
@@ -111,10 +115,6 @@ if (params.id && params.region) {
             img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndcId + '_1.svg'
             a.appendChild(img)
             document.querySelector('.character').appendChild(a)
-            const ndc = data.class[data.class.length - 1]
-            document.getElementById('ndc').innerHTML = ndc
-            // ndcかどうか判定
-            if (!ndc.match(/^\d{3}/)) return noNDC()
             // ndcのラベルをndc.devのAPIから取得
             fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/' + ndc).then((r) => r.json()).then((data) => {
                 const temp = data['label@ja'] !== '' ? data['label@ja'] : data['prefLabel@ja']
@@ -158,8 +158,12 @@ const noNDC = () => {
             ndcs.push(count + '0')
         }
         count += 1
-    })                    
-    document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + shuffle(ndcs)[0] + '_1.svg'
+    })
+    const span = document.createElement('span')
+    const img = document.createElement('img')
+    img.src = 'https://storage.googleapis.com/kumori-ndc/' + shuffle(ndcs)[0] + '_1.svg'
+    span.appendChild(img)
+    document.querySelector('.character').appendChild(span)
     document.getElementById('icons2').innerHTML = ''
     shuffle(ndcs).slice(0, 10).map((ndc) => {
         const a = document.createElement('a')
