@@ -70,11 +70,15 @@ main
                 top: 812px
                 left: 235px
                 z-index: 100000
-                max-width: 15rem
                 transform: rotate(11deg)
                 font-weight: bold
                 text-shadow: 2px  2px 0px #ffffff,-2px  2px 1px #ffffff,2px -2px 1px #ffffff,-2px -2px 1px #ffffff,2px  0px 1px #ffffff,0px  2px 1px #ffffff,-2px  0px 1px #ffffff,0px -2px 1px #ffffff
-                // -webkit-text-stroke: 0.5px #FFF
+                -webkit-text-stroke: 0.5px #FFF
+                display: block
+                max-width: 15rem
+                white-space: nowrap
+                text-overflow: ellipsis
+                overflow: hidden
             .isbn
                 position: absolute
                 bottom: -40px
