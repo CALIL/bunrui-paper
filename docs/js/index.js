@@ -14,6 +14,18 @@ function shuffle(array) {
     }
     return array;
 }
+
+fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9.json').then((r) => r.json()).then((ndcData) => {
+    const ndcCharacters =  Array.from(document.querySelectorAll('img.ndcCharacter'))
+    ndcCharacters.map((ndcCharacter) => {
+        const ndc = ndcCharacter.alt
+        const ndcLabel = ndc + ' ' + ndcData[ndc]['label@ja']
+        ndcCharacter.alt = ndcLabel
+        ndcCharacter.title = ndcLabel
+    })
+})
+
+
 const render = () => {
     const icons = document.getElementById('icons')
     if (icons) icons.innerHTML = '';
@@ -28,12 +40,17 @@ const render = () => {
         count += 1
     })
     shuffle(ndcs).slice(0, 10).map((ndc) => {
+        const a = document.createElement('a')
+        a.href = 'https://try.calil.jp/bunrui/?ndc=' + ndc
+        a.target = '_blank'
         const img = document.createElement('img')
         img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
         img.width = 71
         img.alt = ndc
         img.title = ndc
-        document.getElementById('icons').append(img)
+        img.className = 'ndcCharacter'
+        a.appendChild(img)
+        document.getElementById('icons').appendChild(a)
     })
     Array.prototype.slice.call(document.querySelectorAll('img')).map((img) => {
         setInterval(() => {
@@ -87,7 +104,13 @@ if (params.id && params.region) {
         });
         if (data.class.length > 0) {
             const ndcId = data.class[data.class.length - 1].slice(0, 2) + '0'
-            document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + ndcId + '_1.svg'
+            const a = document.createElement('a')
+            a.href = 'https://try.calil.jp/bunrui/?ndc=' + ndcId
+            a.target = '_blank'
+            const img = document.createElement('img')
+            img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndcId + '_1.svg'
+            a.appendChild(img)
+            document.querySelector('.character').appendChild(a)
             const ndc = data.class[data.class.length - 1]
             document.getElementById('ndc').innerHTML = ndc
             // ndcかどうか判定
@@ -107,12 +130,17 @@ if (params.id && params.region) {
                 count += 1
             })
             shuffle(ndcs).slice(0, 10).map((ndc) => {
+                const a = document.createElement('a')
+                a.href = 'https://try.calil.jp/bunrui/?ndc=' + ndc
+                a.target = '_blank'
                 const img = document.createElement('img')
                 img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
                 img.width = 71
                 img.alt = ndc
                 img.title = ndc
-                document.getElementById('icons2').append(img)
+                img.className = 'ndcCharacter'
+                a.appendChild(img)
+                document.getElementById('icons2').appendChild(a)
             })
         } else {
             noNDC()
@@ -134,12 +162,17 @@ const noNDC = () => {
     document.querySelector('.character').src = 'https://storage.googleapis.com/kumori-ndc/' + shuffle(ndcs)[0] + '_1.svg'
     document.getElementById('icons2').innerHTML = ''
     shuffle(ndcs).slice(0, 10).map((ndc) => {
+        const a = document.createElement('a')
+        a.href = 'https://try.calil.jp/bunrui/?ndc=' + ndc
+        a.target = '_blank'
         const img = document.createElement('img')
         img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
         img.width = 71
         img.alt = ndc
         img.title = ndc
-        document.getElementById('icons2').append(img)
+        img.className = 'ndcCharacter'
+        a.appendChild(img)
+        document.getElementById('icons2').appendChild(a)
     })        
 }
 
