@@ -164,11 +164,6 @@ const noNDC = () => {
         }
         count += 1
     })
-    const span = document.createElement('span')
-    const img = document.createElement('img')
-    img.src = 'https://storage.googleapis.com/kumori-ndc/' + shuffle(ndcs)[0] + '_1.svg'
-    span.appendChild(img)
-    document.querySelector('.character').appendChild(span)
     document.getElementById('icons2').innerHTML = ''
     shuffle(ndcs).slice(0, 10).map((ndc) => {
         const a = document.createElement('a')
