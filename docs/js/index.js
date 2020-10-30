@@ -15,6 +15,8 @@ function shuffle(array) {
     return array;
 }
 
+
+// ndc.devから分類番号一覧を取得
 fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9.json').then((r) => r.json()).then((ndcData) => {
     const ndcCharacters =  Array.from(document.querySelectorAll('img.ndcCharacter'))
     ndcCharacters.map((ndcCharacter) => {
@@ -50,7 +52,7 @@ const render = () => {
         img.title = ndc
         img.className = 'ndcCharacter'
         a.appendChild(img)
-        document.getElementById('icons').appendChild(a)
+        icons.appendChild(a)
     })
     Array.prototype.slice.call(document.querySelectorAll('img')).map((img) => {
         setInterval(() => {
