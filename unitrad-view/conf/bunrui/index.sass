@@ -14,8 +14,6 @@ body
     background-size: auto auto
     background-color: rgba(255, 253, 239, 1)
     background-image: repeating-linear-gradient(135deg, transparent, transparent 50px, rgba(255, 253, 229, 1) 50px, rgba(255, 253, 229, 1) 125px )
-    @media screen and (max-width: 768px)
-        flex-direction: column
     background-position: 0 0
     padding-top: 1.5rem
     padding-bottom: 1rem
@@ -24,9 +22,10 @@ body
         margin-top: -1rem
         margin-right: -0.5rem
         @media screen and (max-width: 768px)
-            width: 150px
-            margin: 0
-            align-self: center
+            width: 140px
+            margin-top: -3rem
+            margin-right: -0.5rem
+            margin-left: -3rem
     > .logo
         > h1
             font-size: 2.8rem
@@ -35,14 +34,14 @@ body
             margin: 2rem 0 0
             @media screen and (max-width: 768px)
                 font-size: 2.25rem
-                text-align: center
                 margin-top: 0
-
             > a
                 color: #ffffff
                 text-decoration: none
                 img
                     width: 276px
+                    @media screen and (max-width: 768px)
+                        width: 200px
         > div
             display: flex
             justify-content: center
@@ -51,9 +50,13 @@ body
                 margin-right: 1rem
                 img
                     width: 200px
+                    @media screen and (max-width: 768px)
+                        width: 150px
             > a.kumori
                 img
                     width: 55px
+                    @media screen and (max-width: 768px)
+                        width: 35px
 
 
 /* ------------------------------------------------------------------------------------- */

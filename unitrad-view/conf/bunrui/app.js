@@ -153,7 +153,7 @@ class customDetailView extends React.Component {
   render() {
     return (
       <div className="actions">
-        <a onClick={this.print.bind(this)}>印刷する</a>
+        <a onClick={this.print.bind(this)}>プリント</a>
       </div>
     )
   }
