@@ -126,10 +126,23 @@ Index.defaultProps.welcomeMessage = (
 class customDetailView extends React.Component {
   constructor(props) {
     super(props);
+    fetch(`https://private.calil.jp/bib/${props.region}/${props.book.id}.json`).then((r) => r.json()).then((data) => {
+      if (data.class.length > 0) {
+        const ndc = data.class[data.class.length - 1]
+        // ndcかどうか判定
+        if (ndc.match(/^\d{3}/)) {
+          const bunruiBooks = document.querySelector('.bunruiBooks')
+          const shrinkNDC = ndc.slice(0, 2) + '0'
+          bunruiBooks.src = 'https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg'
+          bunruiBooks.alt = ndc
+          bunruiBooks.title = ndc    
+        }
+      }
+    });
   }
 
   print_exec() {
-    this.window.location.href = 'https://calil.github.io/bunruiPaper/?id=' + this.props.book.id + '&region=gk-2002000-3xj40';
+    this.window.location.href = 'https://calil.github.io/bunruiPaper/?id=' + this.props.book.id + '&region=' + this.props.region;
   }
   print() {
     let windowId = Math.random().toString(36).slice(-8);

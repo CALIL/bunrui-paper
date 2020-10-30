@@ -272,6 +272,7 @@ export default class Book extends React.Component<Props, State> {
                                                    uuid={this.props.uuid}
                                                    uuid_deep={this.state.uuid}
                                                    book={this.props.book}
+                                                   region={this.props.region}
                                                    deep_book={this.state.book_deep}
                                                    libraries={this.props.libraries}
                                                    remains={this.deep_requested ? (this.state.remains ? this.state.remains : null) : this.props.remains}

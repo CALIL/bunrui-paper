@@ -133,19 +133,6 @@ export default class Results extends React.Component<Props, State> {
           history.pushState('selected_id', '', location.pathname + location.search + '#' + hash);
         }
         this.setState({'selected_id': hash});
-        fetch(`https://private.calil.jp/bib/${this.props.region}/${hash}.json`).then((r) => r.json()).then((data) => {
-          if (data.class.length > 0) {
-            const ndc = data.class[data.class.length - 1]
-            // ndcかどうか判定
-            if (ndc.match(/^\d{3}/)) {
-              const bunruiBooks = document.querySelector('.bunruiBooks')
-              const shrinkNDC = ndc.slice(0, 2) + '0'
-              bunruiBooks.src = 'https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg'
-              bunruiBooks.alt = ndc
-              bunruiBooks.title = ndc    
-            }
-          }
-        });
         break
       }
       current = current.parentElement;
