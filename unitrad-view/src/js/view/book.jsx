@@ -133,13 +133,13 @@ export default class Book extends React.Component<Props, State> {
       if (virtual_holdings.indexOf(1104345) !== -1) hcount += 1;
       if (virtual_holdings.indexOf(1104344) !== -1) hcount += 1;
     }
-
     return (
       <div tabIndex="0" className={'row book ' + (this.props.opened ? 'opened' : '')}
            role="row"
            aria-expanded={this.props.opened}
            aria-rowindex={this.props.index}
            data-id={this.props.book.id}
+           data-ndc={this.props.book.ndc}
            aria-label={
              (this.props.book.title + "。" +
                ((this.props.book.volume) ? this.props.book.volume + "。" : "") +
