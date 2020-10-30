@@ -32,15 +32,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
   if (icons) icons.innerHTML = '';
 
   const params = getQueryString()
-  if (params.free && params.free.match(/^\d{3}$/)) {
-    // const shrinkNDC = params.ndc.slice(0, 2) + '0'
-    // document.querySelector('.logo').insertAdjacentHTML('beforebegin', '<img alt="' + params.ndc + '" title="' + params.ndc + '" class="ndcCharacter" src="https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg">');
-
+  if (params.q && params.q.match(/^\d{3}$/)) {
     let ndcs = []
     let ndcs_add = []
     let count = 0
     Array.from({length: 10}).map(() => {
-        ndcs.push(params.ndc.slice(0,1) + count + '0')
+        ndcs.push(params.q.slice(0,1) + count + '0')
         count += 1
     })
     count = 0
