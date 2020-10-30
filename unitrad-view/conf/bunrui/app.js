@@ -33,8 +33,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   const params = getQueryString()
   if (params.ndc) {
-    const shrinkNDC = params.ndc.slice(0, 2) + '0'
-    document.querySelector('.logo').insertAdjacentHTML('beforebegin', '<img alt="' + params.ndc + '" title="' + params.ndc + '" class="ndcCharacter" src="https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg">');
+    // const shrinkNDC = params.ndc.slice(0, 2) + '0'
+    // document.querySelector('.logo').insertAdjacentHTML('beforebegin', '<img alt="' + params.ndc + '" title="' + params.ndc + '" class="ndcCharacter" src="https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg">');
 
     let ndcs = []
     let ndcs_add = []
@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const new_ndcs = ndcs.concat(shuffle(ndcs_add))
     new_ndcs.slice(0, 20).map((ndc) => {
         const a = document.createElement('a')
-        a.href = './?ndc=' + ndc
+        a.href = './?q=' + ndc
         const img = document.createElement('img')
         img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
         img.width = 71
@@ -78,7 +78,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     })
     shuffle(ndcs).slice(0, 20).map((ndc) => {
         const a = document.createElement('a')
-        a.href = './?ndc=' + ndc
+        a.href = './?q=' + ndc
         const img = document.createElement('img')
         img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
         img.width = 71

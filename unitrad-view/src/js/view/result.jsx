@@ -88,7 +88,18 @@ export default class Results extends React.Component<Props, State> {
       this._query.region = this.props.region;
       this.started = new Date();
       if (!isEmptyQuery(this._query)) {
-        this.api = new api(this._query, this.doUpdate.bind(this));
+        if (this._query.free !=='' && this._query.free.match(/^\w{3}$/)) {
+          const ndc = this._query.free
+          this._query.free = ''
+          this._query.ndc = ndc
+          this.api = new api(this._query, this.doUpdate.bind(this));
+          const bunruiBooks = document.querySelector('.bunruiBooks')
+          bunruiBooks.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
+          bunruiBooks.alt = ndc
+          bunruiBooks.title = ndc
+        } else {
+          this.api = new api(this._query, this.doUpdate.bind(this));
+        }
       } else {
         setTimeout(() => {
           if (isEmptyQuery(this._query)) {
