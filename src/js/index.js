@@ -120,8 +120,8 @@ if (params.id && params.region) {
                 const temp = data['label@ja'] !== '' ? data['label@ja'] : data['prefLabel@ja']
                 const label = ndc + ' ' + temp.split('--')[0]
                 document.getElementById('ndc').innerHTML = label
-                document.querySelector('.character').alt = label
-                document.querySelector('.character').title = label
+                document.querySelector('.character img').alt = label
+                document.querySelector('.character img').title = label
             })
             let ndcs = []
             let count = 0
