@@ -1,0 +1,11 @@
+[ignore]
+.*/node_modules/.*
+<PROJECT_ROOT>/conf/
+
+[include]
+
+[libs]
+flow/
+
+[options]
+

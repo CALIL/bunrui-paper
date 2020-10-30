@@ -1,0 +1,22 @@
+{
+  "siteUrl": null,
+  "title": "こんな本みつけたよ！",
+  "unitrad_options": {
+    "region": "gk-2002000-3xj40",
+    "mode": "simple",
+    "logo": true,
+    "linkLogo": false,
+    "showAreas": false,
+    "hideSide": true,
+    "showFooter": false,
+    "buttons": [],
+    "filterTitle": "検索対象",
+    "filters": [
+      {
+        "id": 0,
+        "name": "すべて",
+        "includes": []
+      }
+    ]
+  }
+}
