@@ -107,6 +107,7 @@ import Index from 'view/index.jsx';
 
 Index.defaultProps.welcomeTitle = "このサービスについて";
 Index.defaultProps.welcomeMessage = (
+  <React.Fragment>
   <div>
     <div>
       <img src="./assets/tsukaikata-1.svg" alt="本をみつける" title="本をみつける" />
@@ -126,15 +127,15 @@ Index.defaultProps.welcomeMessage = (
         かきおわったら壁にはったり、ファイルにとじたりして、つかってね。楽しく本をみつけよう。
       </p>
     </div>
-    {/* このサービスは、カーリルの<a href="https://blog.calil.jp/2020/04/negima.html">「COVID-19:学校図書館支援プログラム」</a>の運用例の参考に作成したデモ画面です。
-    <ul>
-      <li><a href="https://blog.calil.jp/2020/04/bookwalk.html">カーリルブックウォーク</a>のために選定した20万冊が検索対象です</li>
-      <li>予約申し込みは<a href="https://www.google.com/intl/ja_jp/forms/about/">Googleフォーム</a>に連携しています（これはあくまで連携例であり、運用にあわせて調整することができます）</li>
-      <li>書影（本の表紙画像）は<a href="https://openbd.jp/">openBDプロジェクト</a>および<a href="https://books.google.co.jp/">Google Books</a>と連携しています</li>
-      <li><a href="https://calil.jp/privacy/">プライバシーポリシー</a>に基づきパーソナルデータは厳重に保護されます。クッキーやGoogle Analyticsなどによるアクセストラッキングは実施しません。</li>
-      <li>この説明文は、任意の内容に変更することができます</li>
-    </ul> */}
   </div>
+  <hr />
+  <p>
+    このサービスは、カーリルとkumori<a href="https://kumori.info/bunruibooks/">「ブンルイ・ブックス」</a>のコラボにより、カーリルの検索技術の活用デモとして制作されました。
+    検索対象は、<a href="https://blog.calil.jp/2020/04/bookwalk.html">カーリルブックウォーク</a>のために選書した20万冊です。
+    カーリルの横断検索サービス<a href="https://blog.calil.jp/2016/06/unitradlocal.html">「カーリル Unitrad ローカル」</a>や、
+    <a href="https://blog.calil.jp/2020/04/negima.html">「COVID-19 : 学校図書館支援プログラム」</a>を運用中の図書館では、このサービスと連携することができます。
+  </p>
+  </React.Fragment>
 );
 
 
