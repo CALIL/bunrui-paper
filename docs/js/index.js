@@ -42,17 +42,13 @@ const render = () => {
         count += 1
     })
     shuffle(ndcs).slice(0, 10).map((ndc) => {
-        const a = document.createElement('a')
-        a.href = 'https://try.calil.jp/bunrui/?ndc=' + ndc
-        a.target = '_blank'
         const img = document.createElement('img')
         img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
         img.width = 71
         img.alt = ndc
         img.title = ndc
         img.className = 'ndcCharacter'
-        a.appendChild(img)
-        icons.appendChild(a)
+        icons.appendChild(img)
     })
     Array.prototype.slice.call(document.querySelectorAll('img')).map((img) => {
         setInterval(() => {
@@ -135,16 +131,12 @@ if (params.id && params.region) {
                 count += 1
             })
             shuffle(ndcs).slice(0, 10).map((ndc) => {
-                const a = document.createElement('a')
-                a.href = 'https://try.calil.jp/bunrui/?ndc=' + ndc
-                a.target = '_blank'
                 const img = document.createElement('img')
                 img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
                 img.width = 71
                 img.alt = ndc
                 img.title = ndc
                 img.className = 'ndcCharacter'
-                // a.appendChild(img)
                 document.getElementById('icons2').appendChild(img)
             })
         } else {
@@ -166,16 +158,12 @@ const noNDC = () => {
     })
     document.getElementById('icons2').innerHTML = ''
     shuffle(ndcs).slice(0, 10).map((ndc) => {
-        const a = document.createElement('a')
-        a.href = 'https://try.calil.jp/bunrui/?ndc=' + ndc
-        a.target = '_blank'
         const img = document.createElement('img')
         img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
         img.width = 71
         img.alt = ndc
         img.title = ndc
         img.className = 'ndcCharacter'
-        // a.appendChild(img)
         document.getElementById('icons2').appendChild(img)
     })        
 }
