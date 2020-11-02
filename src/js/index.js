@@ -51,8 +51,8 @@ const render = () => {
         img.alt = ndc
         img.title = ndc
         img.className = 'ndcCharacter'
-        a.appendChild(img)
-        icons.appendChild(a)
+        // a.appendChild(img)
+        icons.appendChild(img)
     })
     Array.prototype.slice.call(document.querySelectorAll('img')).map((img) => {
         setInterval(() => {
