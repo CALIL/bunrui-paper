@@ -6,7 +6,7 @@
   "scripts": {
     "flow": "flow",
     "start": "gulp debug --conf=./conf/bunrui/",
-    "release": "gulp release --conf=./conf/bunrui/ --dest=../../trial-hosting/bunrui/",
+    "release": "gulp release --conf=./conf/bunrui/ --dest=../../embed-hosting/lab/bunrui/",
     "test": "mocha --require @babel/register",
     "test-with-browser": "gulp test",
     "preinstall": "npx npm-force-resolutions"

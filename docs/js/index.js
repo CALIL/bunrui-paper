@@ -108,9 +108,6 @@ if (params.id && params.region) {
             if (!ndc.match(/^\d{3}/)) return noNDC()
 
             // 左下のキャラクターを追加
-            const a = document.createElement('a')
-            a.href = 'https://try.calil.jp/bunrui/?ndc=' + ndc
-            a.target = '_blank'
             const img = document.createElement('img')
             const shrinkNDC = data.class[data.class.length - 1].slice(0, 2) + '0'
             img.src = 'https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg'
