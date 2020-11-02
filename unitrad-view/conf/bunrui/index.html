@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/ fb# prefix属性: http://ogp.me/ns/ prefix属性#">
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name=viewport content="width=device-width, initial-scale=1"/>
-    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name=viewport content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet" />
     <title><%- page.title %></title>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@caliljp" />
+    <meta property="og:url" content="https://lab.calil.jp/bunrui/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="こんな本みつけたよ！" />
+    <meta property="og:description" content="カーリルとkumori「ブンルイ・ブックス」のコラボで制作した、カーリルの検索技術を活用した実験サービスです。本をみつけて、印刷しよう！" />
+    <meta property="og:site_name" content="こんな本みつけたよ！" />
+    <meta property="fb:app_id" content="270660792981320" />
+    <meta property="og:image" content="https://calil.github.io/lf2020/assets/konna.png" />
     <%- head %>
 </head>
+
 <body>
-<div class="head">
-    <a href="https://2020.libraryfair.jp/booth/2020/28" class="backLibrary">カーリルブースへ</a>
-    <div>
-        <img src="https://storage.googleapis.com/kumori-ndc/000_1.svg" alt="" title="" class="bunruiBooks ndcCharacter">
-        <div class="logo">
-            <h1>
-                <a href="./">
-                    <img src="./assets/konna.svg" alt="<%- page.title %>"/>
-                </a>
-            </h1>
-            <div>
-                <a href="./" class="calil"><img src="./assets/collaboration.svg" alt="カーリル X ブンルイ・ブックス"/></a>
-                <a href="https://kumori.info" class="kumori"><img src="./assets/kumori.svg" alt="©kumori"/></a>
+    <div class="head">
+        <a href="https://2020.libraryfair.jp/booth/2020/28" class="backLibrary">カーリルブースへ</a>
+        <div>
+            <img src="https://storage.googleapis.com/kumori-ndc/000_1.svg" alt="" title=""
+                class="bunruiBooks ndcCharacter">
+            <div class="logo">
+                <h1>
+                    <a href="./">
+                        <img src="./assets/konna.svg" alt="<%- page.title %>" />
+                    </a>
+                </h1>
+                <div>
+                    <a href="./" class="calil"><img src="./assets/collaboration.svg" alt="カーリル X ブンルイ・ブックス" /></a>
+                    <a href="https://kumori.info" class="kumori"><img src="./assets/kumori.svg" alt="©kumori" /></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<%- body %>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=fetch"></script>
-<%- script %>
+    <%- body %>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=fetch"></script>
+    <%- script %>
 </body>
+
 </html>
