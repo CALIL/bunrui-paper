@@ -21,10 +21,6 @@ npm install --global --production windows-build-tools
 ```
 
 
-
-## デモ
-https://template-npm-scripts.netlify.com/
-
 ## ライセンスについて
 
 The MIT License (MIT)
