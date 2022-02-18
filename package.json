@@ -14,7 +14,7 @@
     "build": "npm-run-all clean build:** -s",
     "build:sass": "sass ./src/index.sass ./docs/index.css --style=compressed",
     "//build:autoprefixer": "postcss ./docs/index.css -o ./docs/index.css --config ./postcss.config.js",
-    "build:pug": "pug -O pug_env.js src/ --out ./docs/",
+    "build:pug": "npx pug -O pug_env.js src/ --out ./docs/",
     "watch:js": "chokidar \"src/**/*.js\" -c \"npm run build:copy:js\"",
     "build:copy:assets": "npx cpx \"src/assets/**/*\" docs/assets/",
     "build:copy:js": "npx cpx \"src/js/**/*\" docs/js/",
@@ -41,8 +41,6 @@
     "postcss": "^7.0.27",
     "postcss-cli": "^6.1.3",
     "postcss-scss": "^2.0.0",
-    "pug": "^3.0.1",
-    "pug-cli": "github:pugjs/pug-cli#master",
     "rimraf": "^3.0.2",
     "sass": "^1.26.3"
   },
