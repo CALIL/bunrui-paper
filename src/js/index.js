@@ -141,6 +141,9 @@ if (params.id && params.region) {
         }
     })
 }
+if (!params.editable || params.editable!=='true') {
+    document.getElementById('comment').style.display = 'none'
+}
 
 const noNDC = () => {
     let count = 0
