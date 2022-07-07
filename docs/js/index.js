@@ -147,9 +147,18 @@ if (params.id && params.region) {
         }
     })
 }
+// 感想のテキストエリアの表示判定
 if (!params.editable || params.editable!=='true') {
     document.getElementById('comment').style.display = 'none'
+    document.getElementById('name').style.display = 'none'
 }
+document.getElementById('name').addEventListener('change', (event) => {
+    localStorage.setItem('bunruiName', event.target.value)
+})
+if (localStorage.getItem('bunruiName')) {
+    document.getElementById('name').value = localStorage.getItem('bunruiName')
+}
+
 
 const noNDC = () => {
     let count = 0
