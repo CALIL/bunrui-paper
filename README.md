@@ -1,27 +1,40 @@
-# LooselyTemplate
-npm scripts で pug+sassがビルドできてオートリロードできるサイト作成環境を書く  
-javascriptも修正するとオートリロードする（コンパイルはしない）
+# Bunrui Paper
 
-## 使い方
+
+## コンセプト
+
+- 本の感想を書ける書式を、書誌データとともに表示する
+- A4サイズに対応
+- 感想・名前を書けるフォームを表示できる
+- 既存の感想を表示できる
+- URLからパラメータを受け取ることができる（連携API）
+
+## 連携API
+
+以下のようなURLでパラメータを受け取ることができます。
+
+`https://bunrui-paper.calil.dev/?param1=xx&param2=xx`
+
+|  パラメータ  |  内容  | 備考 |
+| ---- | ---- | ---- |
+|  id  |  書誌ID  | 必須 |
+|  region  |  Unitrad APIのリージョンID  | 必須 |
+|  editable  |  感想・名前のフォーム表示  | editable='true'で有効化 |
+
+## 開発
 
 ```
 npm install  
 npm start
 ```
 
-## Windows
+## リリースビルド
 
-Gitのインストール  
-https://git-scm.com/downloads
-
-
-node-sassのビルドに必要なライブラリを入れる
 ```
-npm install --global --production windows-build-tools
+npm run build
 ```
 
-
-## ライセンスについて
+## ライセンス
 
 The MIT License (MIT)
 
