@@ -1,5 +1,8 @@
 # Bunrui Paper
 
+本の感想用ページの表示ツール
+
+https://bunrui-paper.calil.dev/?id=4103534257&region=gk-2002000-3xj40&editable=true
 
 ## コンセプト
 
