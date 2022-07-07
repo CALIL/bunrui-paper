@@ -6,6 +6,7 @@ function getQueryString() {
     });
     return params;    
 }
+
 function shuffle(array) {
     for (let i = array.length - 1; i >= 0; i--) {
       let rand = Math.floor(Math.random() * (i + 1));
@@ -29,6 +30,7 @@ fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9.json').then((r) => r.json()).the
 
 
 const render = () => {
+    // ヘッダーのキャラクターを追加
     const icons = document.getElementById('icons')
     if (icons) icons.innerHTML = '';
     let count = 0
@@ -50,10 +52,12 @@ const render = () => {
         img.className = 'ndcCharacter'
         icons.appendChild(img)
     })
-    Array.prototype.slice.call(document.querySelectorAll('img')).map((img) => {
+    // キャラクターのアニメーション
+    Array.prototype.slice.call(document.querySelectorAll('img.ndcCharacter')).map((img) => {
         setInterval(() => {
             const filenames = img.src.split('/').slice(-1)[0].split('_')
             let src = ''
+            // アニメーションがあるのは、この9個のみ
             if (['010','020','030','040','050','060','070','080','090'].indexOf(filenames[0]) !== -1) {
                 if (filenames[1] === '1.svg') {
                     src = 'https://storage.googleapis.com/kumori-ndc/animation/' + filenames[0] + '_' + '2.svg'
@@ -81,6 +85,7 @@ if (params.id && params.region) {
     fetch(`https://private.calil.jp/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
         document.getElementById('cover').src = `https://cover.openbd.jp/${toISBN13(data.normalized_isbn)}.jpg`
         document.getElementById('cover').alt = data.title[0]
+        document.getElementById('cover').title = data.title[0]
         document.title = data.title[0]
         document.getElementById('title').innerHTML = data.title[0]
         document.getElementById('volume').innerHTML = data.volume[0]
@@ -100,7 +105,7 @@ if (params.id && params.region) {
             fontSize: 16,
             flat: true
         });
-        if (data.class.length > 0) {
+        if (data.class && data.class.length > 0) {
             const ndc = data.class[data.class.length - 1]
             document.getElementById('ndc').innerHTML = ndc
             // ndcかどうか判定
@@ -120,6 +125,8 @@ if (params.id && params.region) {
                 document.querySelector('.character img').alt = label
                 document.querySelector('.character img').title = label
             })
+
+            // フッターのキャラクターを追加 本の大分類と同じ
             let ndcs = []
             let count = 0
             Array.from({length: 10}).map(() => {
