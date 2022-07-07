@@ -11,6 +11,8 @@ https://bunrui-paper.calil.dev/?id=4103534257&region=gk-2002000-3xj40&editable=t
 - 既存の感想を表示できる
 - URLからパラメータを受け取ることができる（連携API）
 
+![画面イメージ](preview.png "画面イメージ")
+
 ## 連携API
 
 以下のようなURLでパラメータを受け取ることができます。
