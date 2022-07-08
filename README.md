@@ -38,6 +38,18 @@ npm start
 npm run build
 ```
 
+## 分類ブックスアイコン
+
+[ブンルイ・ブックス ©kumori](https://kumori.info/bunruibooks/)
+
+Google Cloud Storageに保存
+https://console.cloud.google.com/storage/browser/kumori-ndc;tab=objects?forceOnBucketsSortingFiltering=false&project=calil-sandbox&prefix=&forceOnObjectsSortingFiltering=false
+
+```
+https://storage.googleapis.com/kumori-ndc/{{ndc}}_1.svg
+https://storage.googleapis.com/kumori-ndc/{{ndc}}_2.svg
+```
+
 ## ライセンス
 
 The MIT License (MIT)
