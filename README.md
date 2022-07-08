@@ -38,7 +38,7 @@ npm start
 npm run build
 ```
 
-## 分類ブックスアイコン
+## アイコン
 
 [ブンルイ・ブックス ©kumori](https://kumori.info/bunruibooks/)
 
