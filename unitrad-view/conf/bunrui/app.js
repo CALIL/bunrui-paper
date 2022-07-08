@@ -8,6 +8,8 @@
 
  */
 
+const REGION = 'gk-2002000-3xj40'
+
 function getQueryString() {
   var params = {}
   location.search.substr(1).split('&').map(function(param) {
@@ -142,7 +144,7 @@ Index.defaultProps.welcomeMessage = (
 class customDetailView extends React.Component {
   constructor(props) {
     super(props);
-    fetch(`https://private.calil.jp/bib/${props.region}/${props.book.id}.json`).then((r) => r.json()).then((data) => {
+    fetch(`https://private.calil.jp/bib/${REGION}/${props.book.id}.json`).then((r) => r.json()).then((data) => {
       if (data.class.length > 0) {
         const ndc = data.class[data.class.length - 1]
         // ndcかどうか判定
@@ -158,7 +160,7 @@ class customDetailView extends React.Component {
   }
 
   print_exec() {
-    this.window.location.href = 'https://calil.github.io/bunruiPaper/?id=' + this.props.book.id + '&region=' + this.props.region;
+    this.window.location.href = 'https://calil.github.io/bunruiPaper/?id=' + this.props.book.id + '&region=' + REGION;
   }
   print() {
     let windowId = Math.random().toString(36).slice(-8);
