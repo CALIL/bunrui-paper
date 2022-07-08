@@ -42,7 +42,7 @@ npm run build
 
 [ブンルイ・ブックス ©kumori](https://kumori.info/bunruibooks/)
 
-Google Cloud Storageに保存
+Google Cloud Storageに保存\
 https://console.cloud.google.com/storage/browser/kumori-ndc;tab=objects?forceOnBucketsSortingFiltering=false&project=calil-sandbox&prefix=&forceOnObjectsSortingFiltering=false
 
 ```
