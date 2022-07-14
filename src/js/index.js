@@ -156,10 +156,13 @@ if (params.id && params.region) {
                     }
                 })
             }
-            console.log(annotations)
             if (annotations.length > 0) {
                 document.getElementById('annotations').style.display = 'block'
-                document.getElementById('annotations').innerHTML = annotations.join('<br />')
+                annotations.map((annotation) => {
+                    const p = document.createElement('p')
+                    p.innerText = annotation
+                    document.getElementById('annotations').appendChild(p)
+                })
             }
         }
     })
