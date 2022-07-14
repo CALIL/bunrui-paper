@@ -145,6 +145,23 @@ if (params.id && params.region) {
         } else {
             noNDC()
         }
+        // 感想の表示判定 編集モードの時は処理しない
+        if (!params.editable || params.editable!=='true') {
+            const annotations = []
+            if (data.raw_holdings) {
+                data.raw_holdings.map((raw_holding) => {
+                    console.log(raw_holding)
+                    if (raw_holding.annotation) {
+                        annotations.push(raw_holding.annotation)
+                    }
+                })
+            }
+            console.log(annotations)
+            if (annotations.length > 0) {
+                document.getElementById('annotations').style.display = 'block'
+                document.getElementById('annotations').innerHTML = annotations.join('<br />')
+            }
+        }
     })
 }
 // 感想のテキストエリアの表示判定
