@@ -168,9 +168,9 @@ if (params.id && params.region) {
     })
 }
 // 感想のテキストエリアの表示判定
-if (!params.editable || params.editable!=='true') {
-    document.getElementById('comment').style.display = 'none'
-    document.getElementById('name').style.display = 'none'
+if (params.editable && params.editable==='true') {
+    document.getElementById('comment').style.display = 'block'
+    document.getElementById('name').style.display = 'block'
 }
 document.getElementById('name').addEventListener('change', (event) => {
     localStorage.setItem('bunruiName', event.target.value)
