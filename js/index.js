@@ -163,7 +163,7 @@ if (state.id && state.region) {
                 const img = document.createElement('img')
                 const shrinkNDC = data.class[data.class.length - 1].slice(0, 2) + '0'
                 img.src = 'https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg'
-                img.style.shapeOutside = 'url("https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg")'
+                // img.style.shapeOutside = 'url("https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg")'
                 document.getElementById('annotations').appendChild(img)
                 annotations.map((annotation) => {
                     const p = document.createElement('p')
