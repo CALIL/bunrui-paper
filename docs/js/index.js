@@ -105,46 +105,50 @@ if (state.id && state.region) {
             fontSize: 16,
             flat: true
         });
+        console.log(data.class)
         if (data.class && data.class.length > 0) {
             const ndc = data.class[data.class.length - 1]
             document.getElementById('ndc').innerHTML = ndc
             // ndcかどうか判定
-            if (!ndc.match(/^\d{3}/)) return noNDC()
-
-            // 左下のキャラクターを追加
-            const img = document.createElement('img')
-            const shrinkNDC = data.class[data.class.length - 1].slice(0, 2) + '0'
-            img.src = 'https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg'
-            document.querySelector('.character').appendChild(img)
-
-            // ndcのラベルをndc.devのAPIから取得
-            fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/' + ndc).then((r) => r.json()).then((data) => {
-                const temp = data['label@ja'] !== '' ? data['label@ja'] : data['prefLabel@ja']
-                const label = ndc + ' ' + temp.split('--')[0]
-                document.getElementById('ndc').innerHTML = label
-                document.querySelector('.character img').alt = label
-                document.querySelector('.character img').title = label
-            })
-
-            // フッターのキャラクターを追加 本の大分類と同じ
-            let ndcs = []
-            let count = 0
-            Array.from({length: 10}).map(() => {
-                ndcs.push(ndc.slice(0,1) + count + '0')
-                count += 1
-            })
-            shuffle(ndcs).slice(0, 10).map((ndc) => {
+            if (!ndc.match(/^\d{3}/)) {
+                noNDC()
+            } else {
+                // 左下のキャラクターを追加
                 const img = document.createElement('img')
-                img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
-                img.width = 71
-                img.alt = ndc
-                img.title = ndc
-                img.className = 'ndcCharacter'
-                document.getElementById('icons2').appendChild(img)
-            })
+                const shrinkNDC = data.class[data.class.length - 1].slice(0, 2) + '0'
+                img.src = 'https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg'
+                document.querySelector('.character').appendChild(img)
+
+                // ndcのラベルをndc.devのAPIから取得
+                fetch('https://api-4pccg7v5ma-an.a.run.app/ndc9/' + ndc).then((r) => r.json()).then((data) => {
+                    const temp = data['label@ja'] !== '' ? data['label@ja'] : data['prefLabel@ja']
+                    const label = ndc + ' ' + temp.split('--')[0]
+                    document.getElementById('ndc').innerHTML = label
+                    document.querySelector('.character img').alt = label
+                    document.querySelector('.character img').title = label
+                })
+
+                // フッターのキャラクターを追加 本の大分類と同じ
+                let ndcs = []
+                let count = 0
+                Array.from({length: 10}).map(() => {
+                    ndcs.push(ndc.slice(0,1) + count + '0')
+                    count += 1
+                })
+                shuffle(ndcs).slice(0, 10).map((ndc) => {
+                    const img = document.createElement('img')
+                    img.src = 'https://storage.googleapis.com/kumori-ndc/' + ndc + '_1.svg'
+                    img.width = 71
+                    img.alt = ndc
+                    img.title = ndc
+                    img.className = 'ndcCharacter'
+                    document.getElementById('icons2').appendChild(img)
+                })
+            } 
         } else {
             noNDC()
         }
+        console.log(state)
         // 感想の表示判定 編集モードの時は処理しない
         if (!state.editable || state.editable!=='true') {
             const annotations = []
