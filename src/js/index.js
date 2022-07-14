@@ -156,21 +156,32 @@ if (state.id && state.region) {
                 })
             }
             if (annotations.length > 0) {
-                document.querySelector('.character').style.display = 'none'
+                // document.querySelector('.character').style.display = 'none'
                 document.querySelector('.namae').style.display = 'none'
                 document.getElementById('annotations').style.display = 'block'
-                // 左下のキャラクターを追加
-                const img = document.createElement('img')
-                const shrinkNDC = data.class[data.class.length - 1].slice(0, 2) + '0'
-                img.src = 'https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg'
-                // img.style.shapeOutside = 'url("https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg")'
-                document.getElementById('annotations').appendChild(img)
+                // 左下のキャラクターのマスクを追加
+                const div = document.createElement('div')
+                div.id = 'mask'
+                document.getElementById('annotations').appendChild(div)
                 annotations.map((annotation) => {
                     const p = document.createElement('p')
                     p.innerText = annotation
                     const hr = document.createElement('hr')
                     document.getElementById('annotations').appendChild(p)
                     document.getElementById('annotations').appendChild(hr)
+                })
+                annotations.map((annotation) => {
+                    const p = document.createElement('p')
+                    p.innerText = annotation
+                    const hr = document.createElement('hr')
+                    document.getElementById('annotations').appendChild(p)
+                    document.getElementById('annotations').appendChild(hr)
+                })
+                const height = parseInt(document.getElementById('mask').clientHeight)
+                document.getElementById('annotations').addEventListener('scroll', () => {
+                    const scrollTop = document.getElementById('annotations').scrollTop
+                    document.getElementById('mask').style.height = height + scrollTop + 'px'
+                    document.getElementById('mask').style.shapeOutside = `polygon(0px ${185+scrollTop}px, 173px ${185+scrollTop}px, 208px ${250+scrollTop}px, 234px ${350+scrollTop}px, 0px ${350+scrollTop}px)`
                 })
             }
         }
