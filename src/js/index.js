@@ -170,13 +170,6 @@ if (state.id && state.region) {
                     document.getElementById('annotations').appendChild(p)
                     document.getElementById('annotations').appendChild(hr)
                 })
-                annotations.map((annotation) => {
-                    const p = document.createElement('p')
-                    p.innerText = annotation
-                    const hr = document.createElement('hr')
-                    document.getElementById('annotations').appendChild(p)
-                    document.getElementById('annotations').appendChild(hr)
-                })
                 const height = parseInt(document.getElementById('mask').clientHeight)
                 document.getElementById('annotations').addEventListener('scroll', () => {
                     const scrollTop = document.getElementById('annotations').scrollTop
