@@ -80,9 +80,9 @@ const toISBN13 = (isbn10) => {
     return `${src}${checkdigit}`;
 };
 
-const params = getQueryString()
-if (params.id && params.region) {
-    fetch(`https://private.calil.jp/bib/${params.region}/${params.id}.json`).then((r) => r.json()).then((data) => {
+const state = getQueryString()
+if (state.id && state.region) {
+    fetch(`https://private.calil.jp/bib/${state.region}/${state.id}.json`).then((r) => r.json()).then((data) => {
         document.getElementById('cover').src = `https://cover.openbd.jp/${toISBN13(data.normalized_isbn)}.jpg`
         document.getElementById('cover').alt = data.title[0]
         document.getElementById('cover').title = data.title[0]
@@ -146,29 +146,37 @@ if (params.id && params.region) {
             noNDC()
         }
         // 感想の表示判定 編集モードの時は処理しない
-        if (!params.editable || params.editable!=='true') {
+        if (!state.editable || state.editable!=='true') {
             const annotations = []
             if (data.raw_holdings) {
                 data.raw_holdings.map((raw_holding) => {
-                    console.log(raw_holding)
                     if (raw_holding.annotation) {
                         annotations.push(raw_holding.annotation)
                     }
                 })
             }
             if (annotations.length > 0) {
+                document.querySelector('.character').style.display = 'none'
                 document.getElementById('annotations').style.display = 'block'
+                // 左下のキャラクターを追加
+                const img = document.createElement('img')
+                const shrinkNDC = data.class[data.class.length - 1].slice(0, 2) + '0'
+                img.src = 'https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg'
+                img.style.shapeOutside = 'url("https://storage.googleapis.com/kumori-ndc/' + shrinkNDC + '_1.svg")'
+                document.getElementById('annotations').appendChild(img)
                 annotations.map((annotation) => {
                     const p = document.createElement('p')
                     p.innerText = annotation
+                    const hr = document.createElement('hr')
                     document.getElementById('annotations').appendChild(p)
+                    document.getElementById('annotations').appendChild(hr)
                 })
             }
         }
     })
 }
 // 感想のテキストエリアの表示判定
-if (params.editable && params.editable==='true') {
+if (state.editable && state.editable==='true') {
     document.getElementById('comment').style.display = 'block'
     document.getElementById('name').style.display = 'block'
 }
