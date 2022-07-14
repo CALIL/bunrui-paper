@@ -157,6 +157,7 @@ if (state.id && state.region) {
             }
             if (annotations.length > 0) {
                 document.querySelector('.character').style.display = 'none'
+                document.querySelector('.namae').style.display = 'none'
                 document.getElementById('annotations').style.display = 'block'
                 // 左下のキャラクターを追加
                 const img = document.createElement('img')
