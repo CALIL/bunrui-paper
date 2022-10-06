@@ -38,6 +38,10 @@ npm start
 npm run build
 ```
 
+## デプロイ
+
+GitHub Pagesで公開
+
 ## アイコン
 
 [ブンルイ・ブックス ©kumori](https://kumori.info/bunruibooks/)
