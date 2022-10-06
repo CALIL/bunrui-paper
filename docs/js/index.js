@@ -88,7 +88,7 @@ if (state.id && state.region) {
         if (isbn13) {
             document.getElementById('cover').src = `https://cover.openbd.jp/${isbn13}.jpg`
         } else {
-            document.getElementById('cover').style.display = '#CCCCCC'
+            document.getElementById('cover').style.backgroundColor = '#CCCCCC'
         }
         document.getElementById('cover').alt = data.title[0] ? data.title[0] : ''
         document.getElementById('cover').title = data.title[0] ? data.title[0] : ''
