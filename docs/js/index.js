@@ -72,6 +72,7 @@ const render = () => {
 
 
 const toISBN13 = (isbn10) => {
+    if(isbn10 === null) return null
     const src = `978${isbn10.slice(0, 9)}`;
     const sum = src.split('').map(s => parseInt(s))
         .reduce((p, c, i) => p + ((i % 2 === 0) ? c : c * 3));
@@ -83,29 +84,35 @@ const toISBN13 = (isbn10) => {
 const state = getQueryString()
 if (state.id && state.region) {
     fetch(`https://private.calil.jp/bib/${state.region}/${state.id}.json`).then((r) => r.json()).then((data) => {
-        document.getElementById('cover').src = `https://cover.openbd.jp/${toISBN13(data.normalized_isbn)}.jpg`
-        document.getElementById('cover').alt = data.title[0]
-        document.getElementById('cover').title = data.title[0]
+        const isbn13 = toISBN13(data.normalized_isbn)
+        if (isbn13) {
+            document.getElementById('cover').src = `https://cover.openbd.jp/${isbn13}.jpg`
+            document.getElementById('cover').alt = data.title[0]
+            document.getElementById('cover').title = data.title[0]
+        }
         document.title = data.title[0]
-        document.getElementById('title').innerHTML = data.title[0]
-        document.getElementById('volume').innerHTML = data.volume[0]
-        document.getElementById('author').innerHTML = data.author[0]
-        document.getElementById('publisher').innerHTML = data.publisher[0]
-        document.getElementById('pubdate').innerHTML = data.pubdate[0]
+        document.getElementById('title').innerHTML = data.title[0] ? data.title[0] : '' 
+        document.getElementById('volume').innerHTML = data.volume[0] ? data.volume[0] : ''
+        document.getElementById('author').innerHTML = data.author[0] ? data.author[0] : ''
+        document.getElementById('publisher').innerHTML = data.publisher[0] ? data.publisher[0] : ''
+        document.getElementById('pubdate').innerHTML = data.pubdate[0] ? data.pubdate[0] : ''
+        if (!data.pubdate[0]) document.getElementById('pubdate').style.display = 'none'
         // document.getElementById('isbn').innerHTML = data.normalized_isbn
         // JsBarcode('#isbn', data.normalized_isbn);
-        JsBarcode('#isbn', toISBN13(data.normalized_isbn), {
-            format: 'EAN13',
-            lineColor: "#000000",
-            background: 'transparent',
-            width: 1.5,
-            height: 40,
-            displayValue: true,
-            font: "'Kosugi Maru', sans-serif",
-            fontSize: 16,
-            flat: true
-        });
-        console.log(data.class)
+        if (isbn13) {
+            JsBarcode('#isbn', isbn13, {
+                format: 'EAN13',
+                lineColor: "#000000",
+                background: 'transparent',
+                width: 1.5,
+                height: 40,
+                displayValue: true,
+                font: "'Kosugi Maru', sans-serif",
+                fontSize: 16,
+                flat: true
+            });
+        }
+        // console.log(data.class)
         if (data.class && data.class.length > 0) {
             const ndc = data.class[data.class.length - 1]
             document.getElementById('ndc').innerHTML = ndc
