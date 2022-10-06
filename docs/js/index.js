@@ -87,11 +87,13 @@ if (state.id && state.region) {
         const isbn13 = toISBN13(data.normalized_isbn)
         if (isbn13) {
             document.getElementById('cover').src = `https://cover.openbd.jp/${isbn13}.jpg`
-            document.getElementById('cover').alt = data.title[0]
-            document.getElementById('cover').title = data.title[0]
+        } else {
+            document.getElementById('cover').style.display = '#CCCCCC'
         }
-        document.title = data.title[0]
-        document.getElementById('title').innerHTML = data.title[0] ? data.title[0] : '' 
+        document.getElementById('cover').alt = data.title[0] ? data.title[0] : ''
+        document.getElementById('cover').title = data.title[0] ? data.title[0] : ''
+        document.title = data.title[0] ? data.title[0] : ''
+        document.getElementById('title').innerHTML = data.title[0] ? data.title[0] : ''
         document.getElementById('volume').innerHTML = data.volume[0] ? data.volume[0] : ''
         document.getElementById('author').innerHTML = data.author[0] ? data.author[0] : ''
         document.getElementById('publisher').innerHTML = data.publisher[0] ? data.publisher[0] : ''
