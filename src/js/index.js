@@ -86,7 +86,10 @@ if (state.id && state.region) {
     fetch(`https://private.calil.jp/bib/${state.region}/${state.id}.json`).then((r) => r.json()).then((data) => {
         const isbn13 = toISBN13(data.normalized_isbn)
         if (isbn13) {
-            document.getElementById('cover').src = `https://cover.openbd.jp/${isbn13}.jpg`
+            document.getElementById('cover').src = `https://iss.ndl.go.jp/thumbnail/${isbn13}.jpg`
+            document.getElementById('cover').onerror = (e) => {
+                e.target.style.display = 'none'
+            }
         } else {
             document.getElementById('cover').style.backgroundColor = '#CCCCCC'
         }
