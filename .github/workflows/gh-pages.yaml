@@ -29,10 +29,6 @@ jobs:
           node-version: '24'
           cache: npm
 
-      # Pagesのソースを「GitHub Actions」に切り替える(初回のみ実際に変更が入る)
-      - name: Configure Pages ⚙️
-        uses: actions/configure-pages@v6
-
       - name: Install 📦
         run: npm ci
 
