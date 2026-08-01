@@ -1,0 +1,15 @@
+# 改行はLFに統一する。
+# core.autocrlf=true の環境ではチェックアウト時にCRLFへ変換され、
+# LFを前提とする Biome の整形チェックが落ちるため。
+* text=auto eol=lf
+
+# バイナリは変換しない
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
