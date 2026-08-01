@@ -1,6 +1,6 @@
-# Bunrui Paper
+# ブンルイ・ブックス
 
-本の感想用ページの表示ツール
+学校図書館支援プログラムの拡張サービス : 本の感想用ページを表示する
 
 https://bunrui-paper.calil.dev/?id=4103534257&region=gk-2002000-3xj40&editable=true
 
