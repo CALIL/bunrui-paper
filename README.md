@@ -27,10 +27,14 @@ https://bunrui-paper.calil.dev/?id=4103534257&region=gk-2002000-3xj40&editable=t
 
 ## 開発
 
+ビルドツールは [Vite](https://vite.dev/) です。Node.js 20.19以降 または 22.12以降が必要です。
+
 ```
 npm install  
 npm start
 ```
+
+http://localhost:3000 が開き、HTML・Sass・JSの変更が即座に反映されます(HMR)。
 
 ## リリースビルド
 
@@ -38,9 +42,59 @@ npm start
 npm run build
 ```
 
+`docs/` に出力されます。`npm run preview` でビルド結果をローカル確認できます。
+
+`docs/` はビルド成果物なのでGitでは管理していません（CIがビルドして直接デプロイします）。
+
+### ディレクトリ構成
+
+| パス | 内容 |
+| ---- | ---- |
+| `index.html` | エントリ。Viteがここを起点に依存を解決する |
+| `src/index.sass` | スタイルのエントリ。`sass/base` → `sass/components` の順に読み込む |
+| `src/js/index.js` | アプリ本体。DOM操作とAPI呼び出し |
+| `src/js/lib/` | 副作用のない関数群。ここだけ単体テストの対象 |
+| `public/` | 変換せず `docs/` 直下にコピーされる（アセットと `CNAME`） |
+| `vite.config.js` | 出力先・ファイル名・woff除去プラグイン・Vitestの設定 |
+| `biome.json` | lint / format の設定 |
+
+外部への実行時依存は npm パッケージにまとめています。CDNから直接読み込んでいるものはありません。
+
+| 依存 | 用途 | 以前 |
+| ---- | ---- | ---- |
+| `jsbarcode` | ISBNバーコード | minify済みファイルをリポジトリに同梱 |
+| `paper-css` | A4のレイアウト | cdnjs (0.3.0) |
+| `@fontsource/kosugi-maru` | 本文フォント | Google Fonts |
+
+`src/js/lib/ndc-divisions.js` はNDC綱目100件のラベル表です。飾りアイコンの `alt` を埋めるためだけに6MBのJSONを毎回取得していたので、固定表として同梱しています。細かい分類のラベルだけは ndc.dev のAPIから個別に取得します。
+
+## テスト
+
+```
+npm test
+```
+
+`npm test` は以下を順に実行します。
+
+| コマンド | 内容 |
+| ---- | ---- |
+| `npm run lint` | Biome による lint と整形チェック（`npm run format` で自動修正） |
+| `npm run unit` | Vitest による `src/js/lib/` の単体テスト |
+| `npm run build` | `docs/` へのビルド。構文エラーや依存の解決失敗はここで落ちる |
+| `npm run verify` | 生成物の検証（`public/` のコピー・CSS/JSの生成・参照切れ・フォントとvendorのバンドル・外部CDNの混入） |
+
+## CI
+
+| ワークフロー | トリガー | 内容 |
+| ---- | ---- | ---- |
+| [Test](.github/workflows/test.yaml) | push(master) / pull_request | Node 22・24で `npm ci` + `npm test`、および `npm audit` |
+| [Build and Deploy](.github/workflows/gh-pages.yaml) | push(master) | `npm test` が通ったら GitHub Pages へデプロイ |
+
+依存パッケージとGitHub Actionsのバージョンは [Dependabot](.github/dependabot.yml) が毎週月曜に更新PRを作成します。
+
 ## デプロイ
 
-GitHub Pagesで公開
+GitHub Pages（ソースは「GitHub Actions」）で公開しています。`gh-pages` ブランチは使いません。カスタムドメインは `public/CNAME` で維持しています。
 
 ## アイコン
 

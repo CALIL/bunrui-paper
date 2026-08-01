@@ -2,11 +2,8 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&amp;display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.3.0/paper.css">
-    <link rel="stylesheet" href="./index.css">
+    <title>ブンルイ・ペーパー</title>
+    <!-- paper-css・Kosugi Maru・スタイルは src/js/index.js から読み込む(この順に出力される) -->
   </head>
   <!-- Set also "landscape" if you need-->
   <body class="A4">
@@ -15,6 +12,7 @@
       <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25-->
       <section class="sheet padding-10mm">
         <!-- Write HTML just like a web page-->
+        <p id="error" class="error" role="alert" hidden></p>
         <div id="icons"></div>
         <article>
           <div><img id="cover" alt="" />
@@ -24,25 +22,24 @@
             </div>
           </div>
           <div id="content">
-            <img class="waku" src="./assets/waku.svg" alt="" />
-            <img class="konna" src="./assets/konna.svg" alt="こんな本みつけたよ！" />
+            <img class="waku" src="/assets/waku.svg" alt="" />
+            <img class="konna" src="/assets/konna.svg" alt="こんな本みつけたよ！" />
             <textarea id="comment" placeholder="ここをタップして感想を書こう！"></textarea>
             <div id="annotations"></div>
             <input id="name" type="text" value="" />
-            <img class="namae" src="./assets/namae.svg" alt="なまえ" />
+            <img class="namae" src="/assets/namae.svg" alt="なまえ" />
           </div>
           <div class="character"></div>
           <div class="isbn">
-            <svg id="isbn"></svg>
+            <svg id="isbn" role="img" aria-label="ISBNバーコード"></svg>
           </div>
           <div id="ndc"></div>
         </article>
         <div id="icons2"></div>
-        <footer>ブンルイ・ブックス<a href="https://kumori.info" target="_blank"><img src="./assets/kumori.svg" alt="©kumori"></a></footer>
+        <footer>ブンルイ・ブックス<a href="https://kumori.info" target="_blank"><img src="/assets/kumori.svg" alt="©kumori"></a></footer>
         <div class="binder"></div>
       </section>
     </main>
-    <script src="./js/JsBarcode.all.min.js"></script>
-    <script src="./js/index.js"></script>
+    <script type="module" src="/src/js/index.js"></script>
   </body>
 </html>

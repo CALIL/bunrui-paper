@@ -1,0 +1,46 @@
+version: 2
+
+updates:
+  # npmパッケージ(すべてdevDependencies = ビルドツール)
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:00'
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 5
+    # package.json のバージョン範囲も更新する
+    versioning-strategy: increase
+    labels:
+      - dependencies
+    commit-message:
+      prefix: 'chore(deps)'
+      prefix-development: 'chore(deps-dev)'
+      include: scope
+    groups:
+      # minor/patchはまとめて1本のPRに。majorは個別PRになる
+      build-tools:
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+
+  # GitHub Actions のバージョン
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:00'
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    commit-message:
+      prefix: 'chore(ci)'
+    groups:
+      actions:
+        patterns:
+          - '*'

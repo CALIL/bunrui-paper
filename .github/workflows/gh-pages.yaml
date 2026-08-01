@@ -1,24 +1,56 @@
 name: Build and Deploy
-on: [push]
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 実行中のデプロイは中断せず、順番に処理する
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16.3.0
-          always-auth: true
-          registry-url: https://registry.npmjs.org
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v7
 
-      - name: Install and Build 🔧
-        run: |
-          npm install
-          npm run build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.1
+      - name: Setup Node
+        uses: actions/setup-node@v7
         with:
-          branch: gh-pages
-          folder: docs/
+          node-version: '24'
+          cache: npm
+
+      # Pagesのソースを「GitHub Actions」に切り替える(初回のみ実際に変更が入る)
+      - name: Configure Pages ⚙️
+        uses: actions/configure-pages@v6
+
+      - name: Install 📦
+        run: npm ci
+
+      # lint → 単体テスト → build → 生成物の検証。失敗した場合はデプロイしない
+      - name: Test and Build 🔧
+        run: npm test
+
+      - name: Upload artifact 📤
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy 🚀
+        id: deployment
+        uses: actions/deploy-pages@v5

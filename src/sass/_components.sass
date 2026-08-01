@@ -1,3 +1,44 @@
+// +mobile / +tablet / +pc が使えるようにする
+@use "mixins" as *
+
+// NDCキャラクター。アニメーションがある区分は2枚重ねて、
+// 2枚目の不透明度をCSSで切り替える(移行前はアイコンごとにsetIntervalを回していた)
+.ndc-character
+    position: relative
+    display: inline-block
+    width: 71px
+    vertical-align: bottom
+    img
+        display: block
+        width: 100%
+    img + img
+        position: absolute
+        inset: 0
+        animation: ndc-character-blink 1.6s steps(2, jump-none) infinite
+
+@keyframes ndc-character-blink
+    from
+        opacity: 0
+    to
+        opacity: 1
+
+@media (prefers-reduced-motion: reduce)
+    .ndc-character img + img
+        animation: none
+        opacity: 0
+
+.error
+    margin-bottom: 1rem
+    padding: 0.75rem 1rem
+    border: 2px solid #cc0000
+    border-radius: 6px
+    background-color: #fff5f5
+    color: #990000
+    font-size: 0.9rem
+    line-height: 1.5
+    &[hidden]
+        display: none
+
 main
     font-family: 'Kosugi Maru', sans-serif
     section.sheet
@@ -130,7 +171,7 @@ main
                     width: 350px
             #ndc
                 position: absolute
-                top: 812px
+                top: 751px
                 left: 235px
                 z-index: 100000
                 transform: rotate(11deg)
@@ -193,6 +234,11 @@ main
 
 
 @media print
+    // 印刷時はアニメーションの状態が不定になるため1枚目に固定する
+    .ndc-character img + img
+        display: none
+    .error
+        display: none
     .binder
         display: none
     #content

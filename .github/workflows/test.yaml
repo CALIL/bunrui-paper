@@ -1,0 +1,64 @@
+name: Test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['22', '24']
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v7
+
+      - name: Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      # package-lock.json と package.json の整合性もここで検証される
+      - name: Install 📦
+        run: npm ci
+
+      # lint(Biome) → unit(Vitest) → build(vite build) → verify(生成物の検証)
+      - name: Test 🧪
+        run: npm test
+
+      - name: ビルド成果物をアップロード 📤
+        if: matrix.node-version == '24'
+        uses: actions/upload-artifact@v7
+        with:
+          name: docs
+          path: docs/
+          retention-days: 7
+
+  audit:
+    name: npm audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Audit 🔍
+        run: npm audit --audit-level=high
