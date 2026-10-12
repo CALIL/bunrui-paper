@@ -6,7 +6,13 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!docs", "!public/assets", "!src/js/lib/ndc-divisions.js"]
+    "includes": [
+      "**",
+      "!docs",
+      "!public/assets",
+      "!public/kumori-ndc",
+      "!src/js/lib/ndc-divisions.js"
+    ]
   },
   "formatter": {
     "enabled": true,

@@ -100,17 +100,21 @@ GitHub Pages（ソースは「GitHub Actions」）で公開しています。`gh
 
 [ブンルイ・ブックス ©kumori](https://kumori.info/bunruibooks/)
 
-Google Cloud Storageに保存\
-https://console.cloud.google.com/storage/browser/kumori-ndc;tab=objects?forceOnBucketsSortingFiltering=false&project=calil-sandbox&prefix=&forceOnObjectsSortingFiltering=false
+`public/kumori-ndc/` に同梱し、ページと同じオリジンから配信しています。
 
 ```
-https://storage.googleapis.com/kumori-ndc/{{ndc}}_1.svg
-https://storage.googleapis.com/kumori-ndc/{{ndc}}_2.svg
+public/kumori-ndc/{綱目}_1.svg              000〜990 の100件
+public/kumori-ndc/animation/{綱目}_2.svg    010〜090 の9件（_1.svg と交互に表示するアニメーション用）
 ```
+
+以前は GCS の `kumori-ndc` バケット（calil-sandbox）から直接読んでいました。
+
+**`public/kumori-ndc/` 配下のイラストは kumori の著作物で、下記の MIT ライセンスの対象外です。**
+このリポジトリの外で再利用しないでください。
 
 ## ライセンス
 
-The MIT License (MIT)
+`public/kumori-ndc/` と `public/assets/kumori.svg` を除き、The MIT License (MIT)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
