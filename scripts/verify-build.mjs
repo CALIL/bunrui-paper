@@ -182,6 +182,13 @@ try {
             `docs/js/index.js にjsbarcode由来の ${missing.join(', ')} がありません(バンドルされていません)`,
         )
     }
+
+    // キャラクター画像は同梱したものを読む。GCS の kumori-ndc バケットは廃止する
+    if (entry.includes('storage.googleapis.com')) {
+        ng('docs/js/index.js に storage.googleapis.com への参照が残っています')
+    } else {
+        ok('docs/js/index.js が storage.googleapis.com を参照していない')
+    }
 } catch {
     // 生成物そのものの有無は上でチェック済み
 }

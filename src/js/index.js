@@ -7,7 +7,8 @@ import { allDivisions, divisionLabel, divisionsInClass, isNdc, toDivision } from
 import { sample } from './lib/shuffle.js'
 import { parseState } from './lib/state.js'
 
-const CHARACTER_BASE = 'https://storage.googleapis.com/kumori-ndc'
+// ブンルイ・ブックスの画像は public/kumori-ndc/ に同梱している(©kumori。MIT の対象外)
+const CHARACTER_BASE = './kumori-ndc'
 const NDC_API = 'https://api-4pccg7v5ma-an.a.run.app'
 const BIB_API = 'https://private.calil.jp'
 const THUMBNAIL_API = 'https://ndlsearch.ndl.go.jp/thumbnail'
