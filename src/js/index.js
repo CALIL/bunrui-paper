@@ -42,7 +42,7 @@ const fetchJson = async (url) => {
  * @param {unknown} [cause]
  */
 const showError = (message, cause) => {
-    if (cause) console.error(message, cause)
+    if (cause) console.error('%s', message, cause)
     const box = $('error')
     if (!box) return
     box.textContent = message
