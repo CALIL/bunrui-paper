@@ -27,7 +27,7 @@ https://bunrui-paper.calil.dev/?id=4103534257&region=gk-2002000-3xj40&editable=t
 
 ## 開発
 
-ビルドツールは [Vite](https://vite.dev/) です。Node.js 20.19以降 または 22.12以降が必要です。
+ビルドツールは [Vite](https://vite.dev/) です。Node.js 24 以降が必要です（`.nvmrc` で 24 を指定しています）。
 
 ```
 npm install  
@@ -87,7 +87,7 @@ npm test
 
 | ワークフロー | トリガー | 内容 |
 | ---- | ---- | ---- |
-| [Test](.github/workflows/test.yaml) | push(master) / pull_request | Node 22・24で `npm ci` + `npm test`、および `npm audit` |
+| [Test](.github/workflows/test.yaml) | push(master) / pull_request | Node 24 で `npm ci` + `npm test`、および `npm audit` |
 | [Build and Deploy](.github/workflows/gh-pages.yaml) | push(master) | `npm test` が通ったら GitHub Pages へデプロイ |
 
 依存パッケージとGitHub Actionsのバージョンは [Dependabot](.github/dependabot.yml) が毎週月曜に更新PRを作成します。
